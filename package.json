@@ -1,0 +1,26 @@
+{
+  "name": "salesforce-scratch-testing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Testcontainers-style Salesforce Scratch Org lifecycle helper for E2E tests",
+  "type": "module",
+  "packageManager": "pnpm@11.12.0",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --project unit",
+    "test:e2e": "vitest run --project e2e"
+  },
+  "dependencies": {
+    "@salesforce/cli": "^2.150.6",
+    "zod": "^4.6.2"
+  },
+  "devDependencies": {
+    "@jsforce/jsforce-node": "^3.10.25",
+    "@types/node": "^24",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
+  }
+}

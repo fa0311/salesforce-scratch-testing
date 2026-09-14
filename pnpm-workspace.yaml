@@ -1,0 +1,7 @@
+allowBuilds:
+  '@salesforce/cli': true
+  esbuild: true
+  protobufjs: true
+  yarn: false
+minimumReleaseAgeExclude:
+  - zod@4.6.2
