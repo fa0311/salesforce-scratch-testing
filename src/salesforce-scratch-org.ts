@@ -13,11 +13,6 @@ const ShowAccessTokenResultSchema = z.object({
   accessToken: z.string().min(1),
 });
 
-/**
- * `projectDirectory` の Salesforce DX プロジェクトを対象にした Scratch Org。
- * `connect()` が Org を作り、削除を `cleanup` に登録してから、Metadata のデプロイと Permission Set の割り当てを行い、認証情報を返す。
- * 使い終わったら `cleanup.close()` を呼ぶ。
- */
 export const createSalesforceScratchOrg = (projectDirectory: string) => {
   const cleanup = createCleanup();
 
@@ -103,7 +98,6 @@ export const createSalesforceScratchOrg = (projectDirectory: string) => {
   return { connect, cleanup };
 };
 
-/** `connect()` が返す認証情報。 */
 export type SalesforceScratchOrg = Awaited<
   ReturnType<ReturnType<typeof createSalesforceScratchOrg>["connect"]>
 >;

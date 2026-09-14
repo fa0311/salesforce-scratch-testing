@@ -3,7 +3,7 @@ import { describe, test } from "vitest";
 import { createCleanup } from "../../src/cleanup.ts";
 
 describe("createCleanup", () => {
-  test("close は登録した handler をすべて実行し、二度目の close では再実行しない", async () => {
+  test("close runs every registered handler once; a second close runs nothing", async () => {
     const log: string[] = [];
     const cleanup = createCleanup();
 
@@ -19,7 +19,7 @@ describe("createCleanup", () => {
     assert.deepEqual(log, ["a", "b"]);
   });
 
-  test("複数の handler が失敗しても全部走らせてから AggregateError で投げる", async () => {
+  test("close runs all handlers even if some fail, then throws AggregateError", async () => {
     const log: string[] = [];
     const cleanup = createCleanup();
 
@@ -47,7 +47,7 @@ describe("createCleanup", () => {
     assert.deepEqual(log, ["ran"]);
   });
 
-  test("close 後に add した handler は即座に実行する", async () => {
+  test("a handler added after close runs immediately", async () => {
     const log: string[] = [];
     const cleanup = createCleanup();
 

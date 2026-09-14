@@ -12,7 +12,7 @@ const PermissionSetAssignmentRecordsSchema = z.array(
   z.object({ PermissionSet: z.object({ Name: z.string() }) }),
 );
 
-test("connect した Scratch Org に jsforce で接続できる", async () => {
+test("jsforce can connect to the scratch org returned by connect()", async () => {
   const { records } = await connection.query("SELECT Name FROM Organization");
 
   assert.deepEqual(OrganizationRecordsSchema.parse(records), [
@@ -20,7 +20,7 @@ test("connect した Scratch Org に jsforce で接続できる", async () => {
   ]);
 });
 
-test("ソース内の Permission Set がすべて割り当てられている", async () => {
+test("every permission set in the source is assigned", async () => {
   const { records } = await connection.query(
     "SELECT PermissionSet.Name FROM PermissionSetAssignment WHERE PermissionSet.Name IN ('Admin', 'Notes')",
   );
